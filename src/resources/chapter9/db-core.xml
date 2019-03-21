@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 这里使用properties属性节点加载数据源的配置信息,也可以使用property属性来传递 -->
+    <properties resource="db-info.properties"></properties>
+    <!--指定 MyBatis 所用日志的具体实现，未指定时将自动查找。-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+    <mappers>
+        <!--定义完SQL 映射语句,首先我们需要告诉 MyBatis 到哪里去找到这些语句。 最佳的方式是告诉 MyBatis 到哪里去找映射文件。可以使用相对于类路径的资源引用， 或完全限定资源定位符（包括 file:/// 的 URL），或类名和包名等。-->
+        <!-- 使用相对于类路径的资源引用 -->
+        <mapper resource="mappers/malltUserDao-mapper.xml"/>
+        <!-- 使用完全限定资源定位符（URL） -->
+        <!--<mapper url="file:///var/mappers/malltUserDao-mapper.xml"/>-->
+        <!-- 使用映射器接口实现类的完全限定类名 -->
+        <!--<mapper class="com.zhaodf.dao.MalltUserDao"/>-->
+        <!-- 将包内的映射器接口实现全部注册为映射器 -->
+        <!--<package name="mappers/*"/>-->
+    </mappers>
+
+</configuration>

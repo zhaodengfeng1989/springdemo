@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:myname="http://www.test.org/schema/user"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.test.org/schema/user http://www.test.org/schema/user.xsd">
+
+    <bean id="helloWorld" class="com.zhaodf.springframework.chapter2.demo.impl.HelloWorldImpl"></bean>
+    <bean id="getBeanTest" class="com.zhaodf.springframework.chapter2.lookupMethod.GetBeanTest">
+        <lookup-method name="getBean" bean="student"></lookup-method>
+    </bean>
+    <bean id="teacher" class="com.zhaodf.springframework.chapter2.lookupMethod.Teacher"></bean>
+    <bean id="student" class="com.zhaodf.springframework.chapter2.lookupMethod.Student"></bean>
+
+    <bean id="collegeStudent" class="com.zhaodf.springframework.chapter2.replacedMethod.CollegeStudents">
+        <replaced-method name="changMe" replacer="collegeStudentReplacer"></replaced-method>
+    </bean>
+    <bean id="collegeStudentReplacer" class="com.zhaodf.springframework.chapter2.replacedMethod.CollegeStudentsReplacer"></bean>
+    <bean id="person" class="com.zhaodf.springframework.chapter2.constructorArg.Person">
+        <constructor-arg index="0">
+            <value>zhaodf</value>
+        </constructor-arg>
+        <constructor-arg index="1">
+            <value>1</value>
+        </constructor-arg>
+        <constructor-arg index="2">
+            <map>
+                <entry key="one" value="9.99"/>
+                <entry key="two" value="2.75"/>
+                <entry key="six" value="3.99"/>
+            </map>
+        </constructor-arg>
+        <property name="age">
+            <value>22</value>
+        </property>
+        <property name="name">
+            <null></null>
+        </property>
+    </bean>
+    <!--在使用静态工厂方法常见bean时，使用class属性指定包含静态工厂方法的类，使用factory-method属性指定工厂方法本身的名称-->
+    <bean id="clientService" class="com.zhaodf.springframework.chapter2.factoryMethod.ClientService" factory-method="createInstance"/>
+    <myname:user id="testBean" userName="zhaodf" email="zhaodengfeng@0116@163.com"/>
+</beans>
